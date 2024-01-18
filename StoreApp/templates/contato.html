@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block Titulo %} Quem somos {% endblock Titulo %}
+
+{% block Conteudo %}
+        <!-- Header-->
+        <header class="bg-light py-1">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-dark">
+                    <h1 class="display-4 fw-bolder">Contato</h1>
+                </div>
+            </div>
+        </header>
+     
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+        
+                {% if mensagem %}
+                <div class="alert alert-{% if 'Erro' in mensagem %} danger{% else %}success{% endif %}">
+                    {{ mensagem }}
+                </div>
+                {% endif %}           
+
+                <form action="{% url 'contato'%}" method="POST">
+                    {% csrf_token %}
+                    <div class="col-md-6 offset-md-3">
+                       {{ form_contato|crispy }}
+                       <input type="submit" value="Enviar" class="btn btn-dark">
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+{% endblock Conteudo %}    

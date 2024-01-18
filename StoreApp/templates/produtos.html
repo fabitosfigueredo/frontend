@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Titulo %}{{categoria}}{% endblock Titulo %}
+
+{% block Conteudo %}
+
+        <!-- Header-->
+        <header class="bg-light py-1">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-dark">
+                    <h1 class="display-4 fw-bolder">{{categoria}}</h1>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    
+                    
+                    <!-- Inicio Produtos -->
+                    {% for produto in produtos %}
+                    {%include 'includes/card_produto.html'%}
+                    {% empty %}
+                        <b>Nenhum Produto Encontrado<b>
+                    {% endfor %}
+                    <!-- termino produtos-->
+                </div>
+            </div>
+        </section>
+
+{% endblock Conteudo %}
